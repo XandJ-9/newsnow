@@ -29,8 +29,13 @@ const nitroOption: Parameters<typeof viteNitro>[0] = {
 
 if (process.env.VERCEL) {
   nitroOption.preset = "vercel-edge"
+  logger.success("Using Vercel Edge Preset")
   // You can use other online database, do it yourself. For more info: https://db0.unjs.io/connectors
-  nitroOption.database = undefined
+  nitroOption.database = {
+    default: {
+      connector: "sqlite",
+    },
+  }
   // nitroOption.vercel = {
   //   config: {
   //     cache: []
